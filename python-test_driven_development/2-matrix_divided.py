@@ -15,7 +15,10 @@ def matrix_divided(matrix, div):
                    or if div is not a number.
         ZeroDivisionError: If div is zero.
     """
-    if not isinstance(matrix, list) or not all(isinstance(row, list) for row in matrix):
+    if not isinstance(matrix, list):
+        raise TypeError("matrix must be a matrix of integers/floats")
+
+    if any(not isinstance(r, list) for r in matrix):
         raise TypeError("matrix must be a matrix of integers/floats")
 
     if len(matrix) == 0 or any(len(row) != len(matrix[0]) for row in matrix):
