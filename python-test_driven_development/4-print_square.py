@@ -1,4 +1,8 @@
 #!/usr/bin/python3
+"""
+Defines a function that prints a square of a given size.
+"""
+
 
 def print_square(size):
     """Prints a square of a given size using the '#' character.
