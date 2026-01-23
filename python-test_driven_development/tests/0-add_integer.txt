@@ -10,7 +10,7 @@
 
 # Floats (must be cast to int)
 >>> add_integer(1.5, 2.5)
-4
+3
 >>> add_integer(3.9, 4.2)
 7
 >>> add_integer(-3.7, 2)
