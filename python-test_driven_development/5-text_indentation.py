@@ -17,8 +17,12 @@ def text_indentation(text):
     if not isinstance(text, str):
         raise TypeError("text must be a string")
 
-    new_text = text.replace('. ', '.\n\n')
-    new_text1 = new_text.replace('? ', '?\n\n')
-    new_text2 = new_text1.replace(': ', ':\n\n')
-
-    print(new_text2, end="")
+    letters = 0
+    while letters < len(text):
+        print(text[letters], end="")
+        if text[letters] in ['.', '?', ':']:
+            print("\n")
+            # Skip any spaces after the special character
+            while letters + 1 < len(text) and text[letters + 1] == ' ':
+                letters += 1
+        letters += 1

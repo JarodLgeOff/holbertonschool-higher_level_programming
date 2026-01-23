@@ -50,7 +50,9 @@ No special characters
 >>> text_indentation("")
 
 >>> text_indentation("Test.No space after")
-Test.No space after
+Test.
+<BLANKLINE>
+No space after
 
 >>> text_indentation(123)
 Traceback (most recent call last):
