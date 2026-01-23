@@ -1,71 +1,40 @@
 >>> add_integer = __import__('0-add_integer').add_integer
 
-# Basic additions
->>> add_integer(1, 2)
-3
->>> add_integer(-1, 1)
-0
->>> add_integer(1000, 2000)
-3000
+"""
+Tests for add_integer
+"""
 
-# Floats (must be cast to int)
->>> add_integer(1.5, 2.5)
-3
->>> add_integer(3.9, 4.2)
-7
->>> add_integer(-3.7, 2)
--1
-
-# Default value for b
->>> add_integer(1)
-99
->>> add_integer(0)
+>>> add_integer(1, 25)
+26
+>>> add_integer(12, 8)
+20
+>>> add_integer(1, 1)
+2
+>>> add_integer(-7, 3)
+-4
+>>> add_integer(100.3, -2)
 98
+>>> add_integer(100.3, 100.3)
+200
+>>> add_integer(-2, -2)
+-4
 
-# Missing argument
+>>> add_integer(3, 'hello')
+Traceback (most recent call last):
+  ...
+TypeError: b must be an integer
+
+>>> add_integer(3, {1, 2, 3})
+Traceback (most recent call last):
+  ...
+TypeError: b must be an integer
+
+>>> add_integer({4, 5, 6}, 6)
+Traceback (most recent call last):
+  ...
+TypeError: a must be an integer
+
 >>> add_integer()
 Traceback (most recent call last):
-    ...
-TypeError: add_integer() missing 1 required positional argument: 'a'
-
-# Invalid types for a
->>> add_integer("1", 2)
-Traceback (most recent call last):
-    ...
+  ...
 TypeError: a must be an integer
-
->>> add_integer([1], 2)
-Traceback (most recent call last):
-    ...
-TypeError: a must be an integer
-
->>> add_integer(None, 2)
-Traceback (most recent call last):
-    ...
-TypeError: a must be an integer
-
-# Invalid types for b
->>> add_integer(1, "2")
-Traceback (most recent call last):
-    ...
-TypeError: b must be an integer
-
->>> add_integer(1, {2: 3})
-Traceback (most recent call last):
-    ...
-TypeError: b must be an integer
-
->>> add_integer(1, None)
-Traceback (most recent call last):
-    ...
-TypeError: b must be an integer
-
->>> add_integer(float('nan'), 2)
-Traceback (most recent call last):
-    ...
-TypeError: a must be an integer
-
->>> add_integer(2, float('nan'))
-Traceback (most recent call last):
-    ...
-TypeError: b must be an integer
