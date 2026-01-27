@@ -1,0 +1,71 @@
+>>> add_integer = __import__('0-add_integer').add_integer
+
+Test 1: Addition of two positive integers
+    >>> add_integer(1, 2)
+    3
+
+Test 2: Addition with a negative number
+    >>> add_integer(100, -2)
+    98
+
+Test 3: Using the default value
+    >>> add_integer(2)
+    100
+
+Test 4: Addition with floats
+    >>> add_integer(100.3, -2)
+    98
+
+Test 5: Error - b is a string
+    >>> add_integer(4, "School")
+    Traceback (most recent call last):
+        ...
+    TypeError: b must be an integer
+
+Test 6: Error - a is None
+    >>> add_integer(None)
+    Traceback (most recent call last):
+        ...
+    TypeError: a must be an integer
+
+Test 7: Addition with two floats
+    >>> add_integer(10.5, 5.5)
+    15
+
+Test 8: Zero with zero
+    >>> add_integer(0, 0)
+    0
+
+Test 9: Negative numbers
+    >>> add_integer(-5, -3)
+    -8
+
+Test 10: Error - a is a string
+    >>> add_integer("hello", 5)
+    Traceback (most recent call last):
+        ...
+    TypeError: a must be an integer
+
+Test 11: Float infinity for a
+    >>> add_integer(float('inf'), 5)
+    Traceback (most recent call last):
+        ...
+    OverflowError: cannot convert float infinity to integer
+
+Test 12: Float infinity for b
+    >>> add_integer(5, float('inf'))
+    Traceback (most recent call last):
+        ...
+    OverflowError: cannot convert float infinity to integer
+
+Test 13: Negative float infinity
+    >>> add_integer(float('-inf'), 5)
+    Traceback (most recent call last):
+        ...
+    OverflowError: cannot convert float infinity to integer
+
+Test 14: Float NaN (Not a Number)
+    >>> add_integer(float('nan'), 5)
+    Traceback (most recent call last):
+        ...
+    ValueError: cannot convert float NaN to integer
