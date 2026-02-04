@@ -1,4 +1,6 @@
 #!/usr/bin/python3
+"""Define a class Rectangle"""
+
 
 def is_kind_of_class(obj, a_class):
     """Function that checks if an object is an instance of a class or
