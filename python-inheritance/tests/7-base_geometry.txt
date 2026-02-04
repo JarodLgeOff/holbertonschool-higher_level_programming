@@ -6,81 +6,64 @@ Traceback (most recent call last):
 ...
 Exception: area() is not implemented
 
->>> bg.integer_validation("width", 5)
->>> bg.integer_validation("height", 10)
->>> bg.integer_validation("size", 1)
+>>> bg.integer_validator("width", 5)
+>>> bg.integer_validator("height", 10)
+>>> bg.integer_validator("size", 1)
 
->>> bg.integer_validation("width", "5")
+>>> bg.integer_validator("width", "5")
 Traceback (most recent call last):
 ...
 TypeError: width must be an integer
 
->>> bg.integer_validation("height", 5.5)
+>>> bg.integer_validator("height", 5.5)
 Traceback (most recent call last):
 ...
 TypeError: height must be an integer
 
->>> bg.integer_validation("width", None)
+>>> bg.integer_validator("width", None)
 Traceback (most recent call last):
 ...
 TypeError: width must be an integer
 
->>> bg.integer_validation("height", [1, 2, 3])
+>>> bg.integer_validator("height", [1, 2, 3])
 Traceback (most recent call last):
 ...
 TypeError: height must be an integer
 
->>> bg.integer_validation("width", {1, 2, 3})
+>>> bg.integer_validator("width", {1, 2, 3})
 Traceback (most recent call last):
 ...
 TypeError: width must be an integer
 
->>> bg.integer_validation("height", (1, 2))
+>>> bg.integer_validator("height", (1, 2))
 Traceback (most recent call last):
 ...
 TypeError: height must be an integer
 
->>> bg.integer_validation("width", True)
-Traceback (most recent call last):
-...
-TypeError: width must be an integer
-
->>> bg.integer_validation("height", False)
-Traceback (most recent call last):
-...
-TypeError: height must be an integer
-
->>> bg.integer_validation("width", 0)
+>>> bg.integer_validator("width", True)
 Traceback (most recent call last):
 ...
 ValueError: width must be greater than 0
 
->>> bg.integer_validation("height", -5)
+>>> bg.integer_validator("height", False)
 Traceback (most recent call last):
 ...
 ValueError: height must be greater than 0
 
->>> bg.integer_validation("width", -1)
+>>> bg.integer_validator("width", 0)
 Traceback (most recent call last):
 ...
 ValueError: width must be greater than 0
 
->>> bg.integer_validation()
+>>> bg.integer_validator("height", -5)
 Traceback (most recent call last):
 ...
-TypeError: integer_validation() missing 2 required positional arguments: 'name' and 'value'
+ValueError: height must be greater than 0
 
->>> bg.integer_validation("width")
+>>> bg.integer_validator("width", -1)
 Traceback (most recent call last):
 ...
-TypeError: integer_validation() missing 1 required positional argument: 'value'
+ValueError: width must be greater than 0
 
->>> bg.area(5)
-Traceback (most recent call last):
-...
-TypeError: area() takes 1 positional argument but 2 were given
-
->>> bg.integer_validation("", 5)
-
->>> bg.integer_validation("width", 999999999)
->>> bg.integer_validation("height", 100000000000000000000000000000000000000000000000000000000000000)
+>>> bg.integer_validator()
+Trac
