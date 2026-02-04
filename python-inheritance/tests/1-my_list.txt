@@ -1,41 +1,36 @@
->>> from my_list import MyList
-
+>>> MyList = __import__('1-my_list').MyList
 >>> my_list = MyList()
->>> my_list.append(1)
->>> my_list.append(4)
->>> my_list.append(2)
 >>> my_list.append(3)
->>> my_list.append(5)
->>> print(my_list)
-[1, 4, 2, 3, 5]
+>>> my_list.append(1)
+>>> my_list.append(2)
 >>> my_list.print_sorted()
-[1, 2, 3, 4, 5]
+[1, 2, 3]
 >>> print(my_list)
-[1, 4, 2, 3, 5]
-
->>> empty_list = MyList()
->>> empty_list.print_sorted()
+[3, 1, 2]
+>>> my_list = MyList()
+>>> print(my_list)
 []
-
->>> neg_list = MyList()
->>> neg_list.append(-1)
->>> neg_list.append(-5)
->>> neg_list.append(-2)
->>> neg_list.print_sorted()
-[-5, -2, -1]
-
->>> mixed_list = MyList()
->>> mixed_list.append(3)
->>> mixed_list.append(-1)
->>> mixed_list.append(0)
->>> mixed_list.append(2)
->>> mixed_list.print_sorted()
-[-1, 0, 2, 3]
-
->>> single = MyList()
->>> single.append(42)
->>> single.print_sorted()
-[42]
-
->>> isinstance(MyList(), list)
-True
+>>> my_list.append(-1)
+>>> print(my_list)
+[-1]
+>>> my_list.append(-4)
+>>> print(my_list)
+[-1, -4]
+>>> my_list.append(-2)
+>>> print(my_list)
+[-1, -4, -2]
+>>> my_list.append(-3)
+>>> print(my_list)
+[-1, -4, -2, -3]
+>>> my_list.append(-5)
+>>> print(my_list)
+[-1, -4, -2, -3, -5]
+>>> print(my_list)
+[-1, -4, -2, -3, -5]
+>>> my_list.print_sorted()
+[-5, -4, -3, -2, -1]
+>>> print(my_list)
+[-1, -4, -2, -3, -5]
+>>> my_list = MyList()
+>>> my_list.print_sorted()
+[]
