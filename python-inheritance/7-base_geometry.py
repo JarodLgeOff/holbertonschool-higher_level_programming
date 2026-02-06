@@ -4,9 +4,6 @@
 
 class BaseGeometry:
     """BaseGeometry class with area method"""
-    def __init__(self):
-        pass
-
     def area(self):
         """Raises an exception for unimplemented area method"""
         raise Exception("area() is not implemented")
