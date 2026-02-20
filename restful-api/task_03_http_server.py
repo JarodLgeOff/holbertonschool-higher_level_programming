@@ -44,7 +44,7 @@ class SimpleHTTPRequestHandler(http.server.BaseHTTPRequestHandler):
             self.send_response(404)
             self.send_header('Content-type', 'text/plain')
             self.end_headers()
-            self.wfile.write(b"Endpoint Not Found")
+            self.wfile.write(b"Endpoint not found")
 
 
 with socketserver.TCPServer(("", port), SimpleHTTPRequestHandler) as httpd:
