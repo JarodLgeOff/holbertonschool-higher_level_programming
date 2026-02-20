@@ -5,6 +5,8 @@ import http.server
 import json
 import socketserver
 
+port = 8000
+
 
 class SimpleHTTPRequestHandler(http.server.BaseHTTPRequestHandler):
     def do_GET(self):
@@ -45,6 +47,6 @@ class SimpleHTTPRequestHandler(http.server.BaseHTTPRequestHandler):
             self.wfile.write(b"Endpoint Not Found")
 
 
-with socketserver.TCPServer(("", 8000), SimpleHTTPRequestHandler) as httpd:
+with socketserver.TCPServer(("", port), SimpleHTTPRequestHandler) as httpd:
     print("Server started at http://localhost:8000")
     httpd.serve_forever()
