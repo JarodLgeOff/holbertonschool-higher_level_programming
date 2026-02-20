@@ -63,7 +63,7 @@ def login():
 
     user = users.get(username)
 
-    if user and check_password_hash(user["password"], password):
+    if not user or not check_password_hash(user["password"], password):
         return jsonify({"error": "Invalid credentials"}), 401
 
     access_token = create_access_token(identity={"username": username, "role": user["role"]})
@@ -82,7 +82,7 @@ def admin_only():
     current_user = get_jwt_identity()
     if current_user["role"] != "admin":
         return jsonify({"error": "Admin access required"}), 403
-    return "Admin Access Granted"
+    return "Admin Access: Granted"
 
 
 @jwt.unauthorized_loader
@@ -101,7 +101,6 @@ def invalid_token_callback(error):
 def expired_token_callback(jwt_header, jwt_payload):
     """Handle expired JWT token"""
     return jsonify({"error": "Token has expired"}), 401
-
 
 if __name__ == "__main__":
     app.run()
