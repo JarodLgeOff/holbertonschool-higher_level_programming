@@ -1,5 +1,5 @@
---  Create a table named force_name with the following columns
-CREATE TABLE IF NOT EXISTS force_name (
-    id INT DEFAULT 1,
+--  Create a table named id_not_null with the following columns
+CREATE TABLE IF NOT EXISTS id_not_null (
+    id INT DEFAULT 1 NOT NULL,
     name VARCHAR(255)
 );
