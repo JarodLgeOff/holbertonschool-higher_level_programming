@@ -1,4 +1,5 @@
 #!/usr/bin/python3
+"""Script that lists all states with a specific name from the database"""
 import MySQLdb
 import sys
 
