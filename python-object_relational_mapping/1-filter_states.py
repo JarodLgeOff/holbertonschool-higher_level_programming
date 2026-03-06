@@ -23,7 +23,8 @@ if __name__ == "__main__":
         "WHERE name LIKE 'N%' ORDER BY id ASC"
         )
 
-    for row in cur.fetchall():
+    rows = cur.fetchall()
+    for row in rows:
         print(row)
 
     cur.close()
