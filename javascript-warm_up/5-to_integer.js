@@ -1,6 +1,6 @@
 #!/usr/bin/node
 
-const arg = process.argv[2];
+const arg = parseInt(process.argv[2]);
 const num = Number(arg);
 
 if (Number.isInteger(num)) {
