@@ -1,6 +1,7 @@
 from flask import Flask, render_template, request
 import json
 import csv
+import sqlite3
 import os
 
 app = Flask(__name__)
@@ -39,20 +40,45 @@ def read_csv_products(product_id=None):
         return None
 
 
+def read_sql_products(product_id=None):
+    """Read products from SQLite database, optionally filter by id"""
+    try:
+        conn = sqlite3.connect('products.db')
+        conn.row_factory = sqlite3.Row
+        cursor = conn.cursor()
+
+        if product_id is not None:
+            cursor.execute('''
+                SELECT id, name, category, price FROM Products WHERE id = ?
+            ''', (product_id,))
+        else:
+            cursor.execute('SELECT id, name, category, price FROM Products')
+
+        rows = cursor.fetchall()
+        products = [dict(row) for row in rows]
+        conn.close()
+
+        return products if products else ([] if product_id is None else [])
+    except sqlite3.Error:
+        return None
+
+
 @app.route('/products')
 def display_products():
     """Route to display products based on source and optional id"""
     source = request.args.get('source', '').lower()
     product_id = request.args.get('id', type=int)
 
-    if source not in ['json', 'csv']:
+    if source not in ['json', 'csv', 'sql']:
         return render_template('product_display.html',
                                error="Wrong source", products=None)
 
     if source == 'json':
         products = read_json_products(product_id)
-    else:
+    elif source == 'csv':
         products = read_csv_products(product_id)
+    else:
+        products = read_sql_products(product_id)
 
     if products is None:
         return render_template('product_display.html',
