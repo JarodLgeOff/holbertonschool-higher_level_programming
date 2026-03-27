@@ -15,9 +15,9 @@ def read_json_products(product_id=None):
         if product_id is not None:
             products = [p for p in products if p['id'] == product_id]
 
-        return products  # Toujours une liste (vide si aucun résultat)
+        return products
     except (FileNotFoundError, json.JSONDecodeError):
-        return None  # Erreur fichier
+        return None
 
 
 def read_csv_products(product_id=None):
@@ -34,9 +34,9 @@ def read_csv_products(product_id=None):
         if product_id is not None:
             products = [p for p in products if p['id'] == product_id]
 
-        return products  # Toujours une liste (vide si aucun résultat)
+        return products
     except (FileNotFoundError, ValueError):
-        return None  # Erreur fichier
+        return None
 
 
 @app.route('/products')
@@ -54,12 +54,10 @@ def display_products():
     else:  
         products = read_csv_products(product_id)
 
-    # Erreur de lecture fichier
     if products is None:
         return render_template('product_display.html',
                                error="Unable to load products", products=None)
 
-    # ID non trouvé (mais fichier OK)
     if product_id is not None and len(products) == 0:
         return render_template('product_display.html', 
                                error="Product not found", products=None)
