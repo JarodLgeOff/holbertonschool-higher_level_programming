@@ -9,22 +9,22 @@ app = Flask(__name__)
 def read_json_products(product_id=None):
     """Read products from JSON file, optionally filter by id"""
     try:
-        with open('products.json', 'r') as f:
+        with open('products.json', 'r', encoding='utf-8') as f:
             products = json.load(f)
 
         if product_id is not None:
             products = [p for p in products if p['id'] == product_id]
 
-        return products if products else None
+        return products  # Toujours une liste (vide si aucun résultat)
     except (FileNotFoundError, json.JSONDecodeError):
-        return None
+        return None  # Erreur fichier
 
 
 def read_csv_products(product_id=None):
     """Read products from CSV file, optionally filter by id"""
     try:
         products = []
-        with open('products.csv', 'r') as f:
+        with open('products.csv', 'r', encoding='utf-8') as f:
             reader = csv.DictReader(f)
             for row in reader:
                 row['id'] = int(row['id'])
@@ -34,9 +34,9 @@ def read_csv_products(product_id=None):
         if product_id is not None:
             products = [p for p in products if p['id'] == product_id]
 
-        return products if products else None
+        return products  # Toujours une liste (vide si aucun résultat)
     except (FileNotFoundError, ValueError):
-        return None
+        return None  # Erreur fichier
 
 
 @app.route('/products')
@@ -54,13 +54,15 @@ def display_products():
     else:  
         products = read_csv_products(product_id)
 
-    if product_id is not None and products is None:
-        return render_template('product_display.html', 
-                               error="Product not found", products=None)
-
-    if products is None and product_id is None:
+    # Erreur de lecture fichier
+    if products is None:
         return render_template('product_display.html',
                                error="Unable to load products", products=None)
+
+    # ID non trouvé (mais fichier OK)
+    if product_id is not None and len(products) == 0:
+        return render_template('product_display.html', 
+                               error="Product not found", products=None)
 
     return render_template('product_display.html', error=None, 
                            products=products, source=source)
